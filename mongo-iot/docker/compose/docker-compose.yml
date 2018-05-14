@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mongo-iot:
+    image: "mabeulux88/mongo-iot:1.0"
+    ports:
+      - "8080:8080"
+    container_name: "mongo-iot"
+    hostname: "mongo-iot"
+    depends_on:
+      - mongo
+  mongo:
+    image: "mongo:3.6.4"
+    container_name: "mongo"
+    hostname: "mongo"
+    ports:
+      - "27017:27017"

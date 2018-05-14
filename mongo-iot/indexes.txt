@@ -1,0 +1,2 @@
+db.sensor.createIndex({createdAt:1}, {expireAfterSeconds:600})
+db.report.createIndex({createdAt:1}, {expireAfterSeconds:600})
