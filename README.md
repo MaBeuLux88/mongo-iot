@@ -1,7 +1,9 @@
 # mongo-iot
 Demo project with 4 sub-projects: a web service, a random generator, an analyser and an alert manager.
 
-This demo simulates hundreds of computers into several datacenters being monitored (hard drive temperature here).
+![Architecture schema](/images/Mongo-IOT.png)
+
+This demo simulates hundreds of computers into several datacenters being monitored (hard drive temperature here but sky is the limit).
 The goal is to collect all the sensor metrics into MongoDB and then analyse that with change streams and finally push a report into Slack.
 
 # The web service
