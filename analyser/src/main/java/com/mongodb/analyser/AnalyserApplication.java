@@ -52,13 +52,13 @@ public class AnalyserApplication {
     }
 
     private void processingChangeList() {
-        Bson filterInsert = Filters.in("operationType", "insert");
+        Bson filterInsert = Filters.eq("operationType", "insert");
         Bson filterDataCenterId = Filters.eq("fullDocument.dataCenterId", myDataCenterId);
         List<Bson> pipeline = Collections.singletonList(Aggregates.match(and(filterInsert, filterDataCenterId)));
         collSensor.watch(pipeline).forEach((Consumer<ChangeStreamDocument<Sensor>>) this::pushToSensorsList);
     }
 
-    private void pushToSensorsList(ChangeStreamDocument<Sensor> sensorChangeStreamDocument) {
+    private synchronized void pushToSensorsList(ChangeStreamDocument<Sensor> sensorChangeStreamDocument) {
         Sensor sensor = sensorChangeStreamDocument.getFullDocument();
         sensors.add(sensor);
     }
@@ -78,7 +78,7 @@ public class AnalyserApplication {
         collReport = db.getCollection("report", Report.class);
     }
 
-    private void analyseAndWriteToMongoDB() {
+    private synchronized void analyseAndWriteToMongoDB() {
         int nbSensors = sensors.size();
         if (nbSensors == 0)
             return;
