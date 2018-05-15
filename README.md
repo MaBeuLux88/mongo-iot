@@ -1,5 +1,7 @@
-# mongo-iot
-Demo project with 4 sub-projects: a web service, a random generator, an analyser and an alert manager.
+# Mongo-IOT
+Demo project with 4 sub-projects written in Java: a web service, a random generator, an analyser and an alert manager.
+
+Warning : This project is not meant to be the perfect solution for IOT and analytic projects. This is just a showcase of different Java and MongoDB features and maybe a starting point for better ideas and architectures. Also, this architecture is clearly missing load balancers and there are way smarter ways to get the same result in Slack as well.
 
 ![Architecture schema](/images/Mongo-IOT.png)
 
